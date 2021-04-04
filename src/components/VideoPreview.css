@@ -1,0 +1,42 @@
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+h1 {
+  margin-top: 0.4rem;
+  font-weight: bold;
+}
+h3 {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.flex-container p {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+header {
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+.flex-container > p {
+  margin: 0.25em 1rem 1rem;
+}
+img {
+  order: -1;
+  align-self: center;
+}
+.flex-button {
+  margin-top: 1rem; /* auto; */
+  background: rgb(231, 107, 49);
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  border-color: rgb(32, 30, 30);
+}
