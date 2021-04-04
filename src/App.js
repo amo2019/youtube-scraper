@@ -1,12 +1,25 @@
-import "./App.css";
+import React, { Component } from "react";
+import Header from "./components/Header.jsx";
 import MainPage from "./components/MainPage";
+import StatsResults from "./components/StatsResults";
+import { VideoIdProvider } from "./contexts/VideoIdContext";
+import { Route, Switch } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <MainPage />
-    </div>
-  );
+export default class App extends Component {
+  render() {
+    return (
+      <div>
+        <VideoIdProvider>
+          <Header />
+          <Switch>
+            <Route
+              path="/result"
+              render={() => <StatsResults key={this.props.videoIdChange} />}
+            />
+            <Route path="/" component={MainPage} />
+          </Switch>
+        </VideoIdProvider>
+      </div>
+    );
+  }
 }
-
-export default App;
