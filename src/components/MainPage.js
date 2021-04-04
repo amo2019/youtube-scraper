@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Form from "./Form";
-import StatsResults from "./StatsResults";
-import youtube from "./supports/youtube";
-
-import searchByKeyword from "./supports/searchByKeyword";
+import youtube from "../supports/youtube";
+import RelatedVideos from "./RelatedVideos";
+import searchByKeyword from "../supports/searchByKeyword";
 
 class MainPage extends Component {
   state = {
@@ -13,8 +12,28 @@ class MainPage extends Component {
     views: "",
     searchResult: {},
   };
+
+  componentDidMount() {
+    let response = {};
+    const getStorage = async () => {
+      response = await localStorage.getItem("youtube_scraper_key");
+
+      if (response) {
+        response = await JSON.parse(response);
+        this.setState({
+          searchResult: { items: response.searchResult.items },
+          tags: response.searchResult.items[0].snippet.tags,
+          title: response.searchResult.items[0].snippet.title,
+          channelTitle: response.searchResult.items[0].snippet.channelTitle,
+          views: response.searchResult.pageInfo.totalResults,
+        });
+      }
+    };
+    getStorage();
+  }
+
   handleSubmit = async (term) => {
-    const searchResult = await searchByKeyword().catch(function (error) {
+    const searchResult = await searchByKeyword(term).catch(function (error) {
       if (error.response) {
         console.log(error.response.headers);
       } else if (error.request) {
@@ -26,36 +45,32 @@ class MainPage extends Component {
     if (searchResult) {
       for (var i in searchResult.items) {
         var item = searchResult.items[i];
-        console.log("[%s] Title: %s", item.id.videoId, item);
       }
       this.setState({ ...this.state, searchResult: searchResult });
+      const setStorage = await localStorage.setItem(
+        "youtube_scraper_key",
+        JSON.stringify({ ...this.state, searchResult: searchResult })
+      );
     }
 
     const response = await youtube(term);
-    console.log("res:", response);
     if (response.items[0]) {
       this.setState({
-        everything: response.items,
+        searchResult: response.items,
         tags: response.items[0].snippet.tags,
         title: response.items[0].snippet.title,
         channelTitle: response.items[0].snippet.channelTitle,
         views: response.items[0].statistics.viewCount,
       });
     } else {
-      console.log(response.items);
+      console.log("no response");
     }
   };
   render() {
     return (
-      <div className="w-full container mx-auto my-12">
+      <div className="w-full container mx-auto my-10">
         <Form handleFormSubmit={this.handleSubmit} key={this.state.tags} />
-        <StatsResults
-          key={this.state.searchResult.etag}
-          tags={this.state.tags}
-          title={this.state.title}
-          channelTitle={this.state.channelTitle}
-          views={this.state.views}
-        />
+        <RelatedVideos videos={this.state.searchResult.items} {...this.props} />
       </div>
     );
   }
