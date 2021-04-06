@@ -1,0 +1,38 @@
+.search-title {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  margin: 0;
+  border-style: solid;
+  line-height: 1.15;
+  color: #c05621;
+}
+
+.search-input {
+  font-size: 100%;
+  text-align: center;
+  padding-top: 0.5rem;
+  border-bottom-width: 1px;
+  border-color: #c53030;
+
+  line-height: 1.15;
+  padding-left: 0.5rem;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-area {
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  line-height: 1.25;
+  overflow: visible;
+  font-family: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  border-width: 0;
+  text-align: left;
+}
