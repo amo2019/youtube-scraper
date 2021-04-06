@@ -3,10 +3,31 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reduxThunk from "redux-thunk";
+import reducers from "./components/redux/reducers";
+
+const enhancers = [];
+
+let composeEnhancers = compose;
+
+const composeWithDevToolsExtension =
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+if (typeof composeWithDevToolsExtension === "function") {
+  composeEnhancers = composeWithDevToolsExtension;
+}
+
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(reduxThunk), ...enhancers)
+);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
