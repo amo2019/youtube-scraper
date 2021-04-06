@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./form.css";
 
 class Form extends Component {
   state = {
@@ -16,11 +17,11 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <h3 className="text-4xl text-center my-2">Search for YouTube Vedios</h3>
-        <form className="w-full max-w-xl mx-auto" onSubmit={this.handleSubmit}>
-          <div className="flex items-center border-b border-b-2  border-red-700 py-2">
+        <h3 className="search-title">Search for YouTube Vedios</h3>
+        <form className="" onSubmit={this.handleSubmit}>
+          <div className="search-input">
             <input
-              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-1 py-1 px-2 leading-tight focus:outline-none"
+              className="input-area"
               type="text"
               placeholder="Enter the Video Name"
               value={this.state.term}
