@@ -1,12 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import Tags from "./metrics/Tags";
 import Info from "./metrics/Info";
+import "./metrics/metrics.css";
 import youtube from "../supports/youtube";
 import { VideoIdContext } from "../contexts/VideoIdContext";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-function StatsResults(props) {
-  const { videoIdChange } = useContext(VideoIdContext);
+function StatsResults({ videoIdState, videoId }) {
+  //const { videoIdChange } = useContext(VideoIdContext);
+  console.log("videoIdState:", videoIdState);
+  const { youtubeId } = videoIdState;
   const [state, setState] = useState({
     tags: [],
     title: "",
@@ -15,8 +19,8 @@ function StatsResults(props) {
     searchResult: {},
   });
   useEffect(() => {
-    const result = async (videoIdChange) => {
-      const response = await youtube(videoIdChange);
+    const result = async (youtubeId) => {
+      const response = await youtube(youtubeId);
       if (response.items[0]) {
         setState({
           everything: response.items,
@@ -29,26 +33,24 @@ function StatsResults(props) {
         console.log(response.items);
       }
     };
-    result(videoIdChange);
-  }, [videoIdChange]);
+    result(youtubeId);
+  }, [youtubeId]);
 
   return (
-    <div key={props.videoId} className="w-full container mx-auto m-4">
+    <div key={videoId} className="">
       <Link to={{ pathname: "/" }}>
-        <button className=" hover:bg-black text-blue-dark font-semibold hover:text-white py-2 px-4 border border-blue rounded">
-          Back
-        </button>
+        <button className="flex-button">{`<- Back`}</button>
       </Link>
       <br />
       <div id="tags">
-        <div className="px-2">
-          <div className="flex -mx-2">
-            <Tags tags={state.tags} />
+        <div className="">
+          <div className="grid-container">
             <Info
               title={state.title}
               channelTitle={state.channelTitle}
               views={state.views}
             />
+            <Tags tags={state.tags} />
           </div>
         </div>
       </div>
@@ -56,4 +58,9 @@ function StatsResults(props) {
   );
 }
 
-export default StatsResults;
+const mapStateToProps = (state) => {
+  const { videoIdState } = state;
+  return { videoIdState };
+};
+
+export default connect(mapStateToProps)(StatsResults);
