@@ -7,36 +7,43 @@
   padding: 2rem;
 }
 
-h1 {
+.flex-container > h1 {
   margin-top: 0.4rem;
   font-weight: bold;
 }
-h3 {
+.flex-container > h3 {
   margin-top: 1rem;
   font-weight: bold;
 }
 .flex-container p {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
   font-weight: bold;
+  color: rgb(77, 67, 67);
 }
-header {
-  margin-bottom: 1rem;
-  padding-top: 1rem;
-}
-.flex-container > p {
-  margin: 0.25em 1rem 1rem;
-}
-img {
+.flex-container img {
   order: -1;
   align-self: center;
+  margin-bottom: 0.5rem;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
+
 .flex-button {
-  margin-top: 1rem; /* auto; */
-  background: rgb(231, 107, 49);
-  color: white;
+  margin-top: 0.5rem; /* auto; */
+  background: rgb(247, 218, 207);
+  color: rgb(15, 15, 15);
   padding: 0.5rem;
   border: 1px solid black;
   border-radius: 1rem;
   font-size: 1.2rem;
   border-color: rgb(32, 30, 30);
+  margin-left: 2rem;
+  cursor: pointer;
+}
+.flex-button:hover {
+  background: rgb(49, 47, 46);
+  color: white;
+  padding: 0.5rem;
+  border: 1px solid rgb(224, 87, 24);
 }

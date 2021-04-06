@@ -1,18 +1,20 @@
 import React, { useState, useContext } from "react";
-import { Image } from "semantic-ui-react";
 import "./VideoPreview.css";
 import { VideoIdContext } from "../contexts/VideoIdContext";
 import { Link } from "react-router-dom";
+import { youtubeIdUpdate } from "./redux/actions";
+import { connect } from "react-redux";
 
 function VideoPreview(props) {
   const [videoId, setVideoId] = useState({
     idChange: "",
   });
-
+  console.log("youtubeIdState:", props.videoIdState.youtubeId);
   const { setVideoIdChange } = useContext(VideoIdContext);
   const handleClick = () => {
     setVideoId(props.videoId);
     setVideoIdChange(props.videoId);
+    props.youtubeIdUpdate({ youtubeId: props.videoId });
   };
   const { video } = props;
   if (!video) {
@@ -46,9 +48,7 @@ function VideoPreview(props) {
             <p>{video.snippet.channelTitle}</p>
             <div>{description}</div>
 
-            <button className="flex-button hover:bg-black">
-              CLICK FOR DETAILS
-            </button>
+            <button className="flex-button">CLICK FOR DETAILS</button>
           </div>
         </div>
       </div>
@@ -56,4 +56,9 @@ function VideoPreview(props) {
   );
 }
 
-export default VideoPreview;
+const mapStateToProps = (state) => {
+  const { videoIdState } = state;
+  return { videoIdState };
+};
+
+export default connect(mapStateToProps, { youtubeIdUpdate })(VideoPreview);
