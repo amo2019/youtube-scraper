@@ -1,8 +1,5 @@
-.related-videos a > div {
-  margin-top: 8px;
-}
-
 .grid-container {
+  border-width: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 1rem;
