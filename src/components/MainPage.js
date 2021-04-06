@@ -68,7 +68,7 @@ class MainPage extends Component {
   };
   render() {
     return (
-      <div className="w-full container mx-auto my-10">
+      <div style={{ margin: "2px" }}>
         <Form handleFormSubmit={this.handleSubmit} key={this.state.tags} />
         <RelatedVideos videos={this.state.searchResult.items} {...this.props} />
       </div>
