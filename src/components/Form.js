@@ -17,7 +17,7 @@ class Form extends Component {
   render() {
     return (
       <div>
-        <h3 className="search-title">Search for YouTube Vedios</h3>
+        <h3 className="search-title">Search for YouTube Videos</h3>
         <form className="" onSubmit={this.handleSubmit}>
           <div className="search-input">
             <input
