@@ -13,7 +13,7 @@ youtube-scraper react app: search for youtube vedios to extract the stats for ea
 
 # Start App
 
-Clone repo, install, cd into folder and run:
+Clone repo, cd into folder and run:
 
 ```git
 npm install or yarn
