@@ -2,9 +2,9 @@
 
 youtube-scraper react app: search for youtube vedios to extract the stats for each youtube vedio.
 
-![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtube0.png?raw=true&s=100)
+![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtubeScraper.png?raw=true&s=100)
 
-![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtube2.png?raw=true)
+![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtubeScrape2r.png?raw=true)
 
 # Tools
 
