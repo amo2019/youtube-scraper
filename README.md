@@ -4,7 +4,7 @@ youtube-scraper react app: search for youtube vedios to extract the stats for ea
 
 ![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtubeScraper.png?raw=true&s=100)
 
-![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtubeScrape2r.png?raw=true)
+![alt text](https://amo2019.github.io/media-sample-files/youtube-react-app/youtubeScraper2.png?raw=true&s=100)
 
 # Tools
 
