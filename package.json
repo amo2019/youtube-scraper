@@ -5,9 +5,6 @@
   "description": "youtube-scraper, Search for youtube vedios to extract the stats for each youtube vedio.",
   "author": "Amin <aminvpython@gmail.com>",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^13.1.9",
     "axios": "^0.21.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
@@ -19,6 +16,19 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^2.0.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^13.1.9",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
+    "fetch-mock": "^9.11.0",
+    "nock": "^13.1.0",
+    "react-test-renderer": "^17.0.2",
+    "redux-mock-store": "^1.5.4"
   },
   "scripts": {
     "start": "react-scripts start",
