@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Header from "./components/Header.jsx";
+import Header from "./components/Header/Header.jsx";
 import MainPage from "./components/MainPage";
 import StatsResults from "./components/StatsResults";
 import { VideoIdProvider } from "./contexts/VideoIdContext";

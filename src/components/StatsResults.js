@@ -1,15 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Tags from "./metrics/Tags";
 import Info from "./metrics/Info";
 import "./metrics/metrics.css";
 import youtube from "../supports/youtube";
-import { VideoIdContext } from "../contexts/VideoIdContext";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 function StatsResults({ videoIdState, videoId }) {
-  //const { videoIdChange } = useContext(VideoIdContext);
-  console.log("videoIdState:", videoIdState);
+
   const { youtubeId } = videoIdState;
   const [state, setState] = useState({
     tags: [],
@@ -30,7 +28,7 @@ function StatsResults({ videoIdState, videoId }) {
           views: response.items[0].statistics.viewCount,
         });
       } else {
-        console.log(response.items);
+        console.log("Response Error", response.items);
       }
     };
     result(youtubeId);

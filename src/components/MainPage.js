@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Form";
 import youtube from "../supports/youtube";
-import RelatedVideos from "./RelatedVideos";
+import RelatedVideos from "./RelatedVideos/RelatedVideos";
 import searchByKeyword from "../supports/searchByKeyword";
 
 class MainPage extends Component {
@@ -43,11 +43,8 @@ class MainPage extends Component {
       }
     });
     if (searchResult) {
-      for (var i in searchResult.items) {
-        var item = searchResult.items[i];
-      }
       this.setState({ ...this.state, searchResult: searchResult });
-      const setStorage = await localStorage.setItem(
+      await localStorage.setItem(
         "youtube_scraper_key",
         JSON.stringify({ ...this.state, searchResult: searchResult })
       );

@@ -1,5 +1,5 @@
 import React from "react";
-import VideoPreview from "./VideoPreview";
+import VideoPreview from "../VideoPreview/VideoPreview";
 import "./RelatedVideos.css";
 
 const RelatedVideos = (props) => {
@@ -7,7 +7,6 @@ const RelatedVideos = (props) => {
     return <div className="related-videos" />;
   }
 
-  const nextUpVideo = props.videos[0];
   const remainingVideos = props.videos.slice(1);
 
   const relatedVideosPreviews = remainingVideos.map((relatedVideo) => (
