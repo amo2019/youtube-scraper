@@ -2,14 +2,18 @@ import React, { useState, useContext } from "react";
 import "./VideoPreview.css";
 import { VideoIdContext } from "../../contexts/VideoIdContext";
 import { Link } from "react-router-dom";
-import { youtubeIdUpdate } from "../redux/actions";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { startVideoPlayer } from "../redux/actions/layout";
+import YoutubePlayer from "../YoutubePlayer";
+
 
 function VideoPreview(props) {
   const [videoId, setVideoId] = useState({
     idChange: "",
   });
-  console.log("youtubeIdState:", props.videoIdState.youtubeId);
+  const dispatch = useDispatch();
+  const videoPlayer = useSelector(state => state.layout.videoPlayer);
+ 
   const { setVideoIdChange } = useContext(VideoIdContext);
   const handleClick = () => {
     setVideoId(props.videoId);
@@ -22,41 +26,38 @@ function VideoPreview(props) {
   }
 
   const description = props.expanded ? video.snippet.description : null;
-  // let idChanged = false;
-  // let videoIdChanged = props.videoId;
-  // let stateIdChange = props.videoId;
-  // if (videoId) {
-  //   stateIdChange = videoId.idChange;
-  // }
-
-  // (videoIdChanged !== stateIdChange) &&
-  // (String(videoIdChanged).trim() !== "undefined")
-  //   ? (idChanged = true)
-  //   : (idChanged = false);
+  
+  const triggerVideoPlayer = ()=>{
+    console.log("props.videoId:", props.videoId)
+     dispatch(startVideoPlayer(props.videoId))
+     setTimeout(()=>{console.log("videoPlayer:", videoPlayer.visible)}, 1000)
+    
+  }
   return (
-    <Link to={{ pathname: "/result", videoId: videoId.idChange }}>
-      <div onClick={() => handleClick(this)}>
+    
+      <div>
         <div className="flex-container">
-          <div className="img">
-            <img src={video.snippet.thumbnails.medium.url} alt="YouTube Video thumbnails" />
+          <div className="img" >
+            <img src={video.snippet.thumbnails.medium.url} alt="YouTube Video thumbnails" 
+              onClick={() => triggerVideoPlayer()
+            }
+            />
           </div>
+          <Link to={{ pathname: "/result", videoId: videoId.idChange }}>
           <div>
             <div>{video.snippet.title}</div>
 
             <p>{video.snippet.channelTitle}</p>
             <div>{description}</div>
-
-            <button className="flex-button">CLICK FOR DETAILS</button>
+           
+            <button className="flex-button"  onClick={() => handleClick(this)}>CLICK FOR DETAILS</button>
           </div>
+          </Link>
         </div>
+        {videoPlayer.visible? <YoutubePlayer/>: null}
       </div>
-    </Link>
+    
   );
 }
 
-const mapStateToProps = (state) => {
-  const { videoIdState } = state;
-  return { videoIdState };
-};
-
-export default connect(mapStateToProps, { youtubeIdUpdate })(VideoPreview);
+export default VideoPreview;

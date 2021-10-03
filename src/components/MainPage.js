@@ -1,38 +1,39 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "./Form";
 import youtube from "../supports/youtube";
 import RelatedVideos from "./RelatedVideos/RelatedVideos";
 import searchByKeyword from "../supports/searchByKeyword";
 
-class MainPage extends Component {
-  state = {
+
+
+function MainPage(props) {
+  const [state, setState] = useState({
     tags: [],
     title: "",
     channelTitle: "",
     views: "",
     searchResult: {},
-  };
-
-  componentDidMount() {
+  });
+  useEffect(() => {
     let response = {};
-    const getStorage = async () => {
-      response = await localStorage.getItem("youtube_scraper_key");
+      const getStorage = async () => {
+        response = await localStorage.getItem("youtube_scraper_key");
+  
+        if (response) {
+          response = await JSON.parse(response);
+          setState({
+            searchResult: { items: response.searchResult.items },
+            tags: response.searchResult.items[0].snippet.tags,
+            title: response.searchResult.items[0].snippet.title,
+            channelTitle: response.searchResult.items[0].snippet.channelTitle,
+            views: response.searchResult.pageInfo.totalResults,
+          });
+        }
+      };
+      getStorage();
+  }, []);
 
-      if (response) {
-        response = await JSON.parse(response);
-        this.setState({
-          searchResult: { items: response.searchResult.items },
-          tags: response.searchResult.items[0].snippet.tags,
-          title: response.searchResult.items[0].snippet.title,
-          channelTitle: response.searchResult.items[0].snippet.channelTitle,
-          views: response.searchResult.pageInfo.totalResults,
-        });
-      }
-    };
-    getStorage();
-  }
-
-  handleSubmit = async (term) => {
+  const handleSubmit = async (term) => {
     const searchResult = await searchByKeyword(term).catch(function (error) {
       if (error.response) {
         console.log(error.response.headers);
@@ -43,16 +44,16 @@ class MainPage extends Component {
       }
     });
     if (searchResult) {
-      this.setState({ ...this.state, searchResult: searchResult });
+      setState({ ...state, searchResult: searchResult });
       await localStorage.setItem(
         "youtube_scraper_key",
-        JSON.stringify({ ...this.state, searchResult: searchResult })
+        JSON.stringify({ ...state, searchResult: searchResult })
       );
     }
 
     const response = await youtube(term);
     if (response.items[0]) {
-      this.setState({
+      setState({
         searchResult: response.items,
         tags: response.items[0].snippet.tags,
         title: response.items[0].snippet.title,
@@ -63,14 +64,14 @@ class MainPage extends Component {
       console.log("no response");
     }
   };
-  render() {
+
+  
     return (
       <div style={{ margin: "2px" }}>
-        <Form handleFormSubmit={this.handleSubmit} key={this.state.tags} />
-        <RelatedVideos videos={this.state.searchResult.items} {...this.props} />
+        <Form handleFormSubmit={handleSubmit} key={state.tags} />
+        <RelatedVideos videos={state.searchResult.items} {...props} />
       </div>
     );
-  }
 }
 
 export default MainPage;
