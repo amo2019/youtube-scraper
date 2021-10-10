@@ -1,8 +1,7 @@
 import React from "react";
 import VideoPreview from "../components/VideoPreview/VideoPreview";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import  {VideoIdContext}  from "./VideoIdContext";
-import userEvent from "@testing-library/user-event";
 import { createStore, applyMiddleware, compose } from "redux";
 import reducers from "../components/redux/reducers";
 import reduxThunk from "redux-thunk";
