@@ -55,3 +55,47 @@ input {
 a {
   color: black;
 }
+
+.custom-youtube-player {
+  position: fixed;
+  width: 450px;
+  height: 300px;
+  bottom: 40px;
+  right: 40px;
+  background: #000;
+}
+.custom-youtube-player .close,
+.custom-youtube-player .handle {
+  position: absolute;
+  right: 0px;
+  top: -1.9rem !important;
+  width: 1.8rem !important;
+  height: 2rem !important;
+  background: #000;
+  color: #fff;
+  opacity: 1;
+  padding: .4rem !important;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.custom-youtube-player .handle {
+  right: 32px;
+  padding-top: 8px;
+  cursor: move;
+}
+
+
+.custom-youtube-player .handle {
+  right: 32px;
+  padding-top: .4rem;
+  cursor: move;
+  padding-left: .4rem;
+}
+
+.svg-inline--fa.fa-w-11 {
+  width: 1rem;
+}
+
+.svg-inline--fa {
+ height: 1.3rem !important;
+}
