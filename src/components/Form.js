@@ -1,31 +1,31 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./form.css";
 
-class Form extends Component {
-  state = {
-    term: "",
-  };
-  handleChange = (event) => {
-    this.setState({
+const Form = (props) => {
+  const [state, setState] = useState({term: ""});
+ 
+ const handleChange = (event) => {
+    setState({
       term: event.target.value,
     });
   };
-  handleSubmit = (event) => {
+
+ const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.handleFormSubmit(this.state.term);
+    props.handleFormSubmit(this.state.term);
   };
-  render() {
+
     return (
       <div>
         <h3 className="search-title">Search for YouTube Videos</h3>
-        <form className="" onSubmit={this.handleSubmit}>
+        <form className="" onSubmit={handleSubmit}>
           <div className="search-input">
             <input
               className="input-area"
               type="text"
               placeholder="Enter the Video Name"
-              value={this.state.term}
-              onChange={this.handleChange}
+              value={state.term}
+              onChange={handleChange}
             />
           </div>
         </form>
@@ -33,6 +33,5 @@ class Form extends Component {
       </div>
     );
   }
-}
 
 export default Form;
