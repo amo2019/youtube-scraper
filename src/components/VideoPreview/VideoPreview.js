@@ -4,7 +4,7 @@ import { VideoIdContext } from "../../contexts/VideoIdContext";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { startVideoPlayer } from "../redux/actions/layout";
-import YoutubePlayer from "../YoutubePlayer";
+import { youtubeIdUpdate } from "../redux/actions/YoutubeIdActions";
 
 
 function VideoPreview(props) {
@@ -18,7 +18,7 @@ function VideoPreview(props) {
   const handleClick = () => {
     setVideoId(props.videoId);
     setVideoIdChange(props.videoId);
-    props.youtubeIdUpdate({ youtubeId: props.videoId });
+    dispatch(youtubeIdUpdate({ youtubeId: props.videoId }));
   };
   const { video } = props;
   if (!video) {
@@ -38,7 +38,7 @@ function VideoPreview(props) {
       <div>
         <div className="flex-container">
           <div className="img" >
-            <img src={video.snippet.thumbnails.medium.url} alt="YouTube Video thumbnails" 
+            <img src={video.snippet.thumbnails.medium.url} className="img-center" alt="YouTube Video thumbnails" 
               onClick={() => triggerVideoPlayer()
             }
             />
@@ -54,7 +54,7 @@ function VideoPreview(props) {
           </div>
           </Link>
         </div>
-        {videoPlayer.visible? <YoutubePlayer/>: null}
+        
       </div>
     
   );
