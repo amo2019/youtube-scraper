@@ -78,11 +78,6 @@ a {
   cursor: pointer;
   border-radius: 4px;
 }
-.custom-youtube-player .handle {
-  right: 32px;
-  padding-top: 8px;
-  cursor: move;
-}
 
 
 .custom-youtube-player .handle {
@@ -99,3 +94,4 @@ a {
 .svg-inline--fa {
  height: 1.3rem !important;
 }
+
