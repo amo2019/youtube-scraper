@@ -84,7 +84,7 @@
 .img:hover::after{
   position: absolute;
   content: "Click to play the Video";
-  top: 50%;
+  top: 30%;
   left: 50%;
   font-size: .7rem;
   font-weight: bold;
@@ -92,4 +92,4 @@
   color: rgba(255, 244, 86, 0.904);
 	transition: all .2s ease;
   cursor: crosshair;
-}
+} 
