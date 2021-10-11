@@ -20,15 +20,19 @@ function StatsResults({ videoIdState, videoId }) {
     const result = async (youtubeId) => {
       const response = await youtube(youtubeId);
       if (response.items[0]) {
-        setState({
-          everything: response.items,
-          tags: response.items[0].snippet.tags,
-          title: response.items[0].snippet.title,
-          channelTitle: response.items[0].snippet.channelTitle,
-          views: response.items[0].statistics.viewCount,
-        });
-      } else {
-        console.log("Response Error", response.items);
+        try{
+          setState({
+            everything: response.items,
+            tags: response.items[0].snippet.tags,
+            title: response.items[0].snippet.title,
+            channelTitle: response.items[0].snippet.channelTitle,
+            views: response.items[0].statistics.viewCount,
+          });
+
+        } catch{
+
+          console.log("Response Error", response?.items);
+        }
       }
     };
     result(youtubeId);
