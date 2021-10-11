@@ -6,7 +6,7 @@ import searchByKeyword from "../supports/searchByKeyword";
 
 
 
-function MainPage(props) {
+function MainPage(props) { 
   const [state, setState] = useState({
     tags: [],
     title: "",
@@ -20,15 +20,21 @@ function MainPage(props) {
         response = await localStorage.getItem("youtube_scraper_key");
   
         if (response) {
-          response = await JSON.parse(response);
-          setState({
-            searchResult: { items: response.searchResult.items },
-            tags: response.searchResult.items[0].snippet.tags,
-            title: response.searchResult.items[0].snippet.title,
-            channelTitle: response.searchResult.items[0].snippet.channelTitle,
-            views: response.searchResult.pageInfo.totalResults,
-          });
-        }
+          try{
+            response = await JSON.parse(response);
+            setState({
+              searchResult: { items: response.searchResult.items },
+              tags: response.searchResult.items[0].snippet.tags,
+              title: response.searchResult.items[0].snippet.title,
+              channelTitle: response.searchResult.items[0].snippet.channelTitle,
+              views: response.searchResult.pageInfo.totalResults,
+            });
+          }
+          catch{
+            console.log("No cached data..")
+          }
+         
+        } else console.log("No cached data..");
       };
       getStorage();
   }, []);
