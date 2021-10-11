@@ -12,7 +12,7 @@ const Form = (props) => {
 
  const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleFormSubmit(this.state.term);
+    props.handleFormSubmit(state.term);
   };
 
     return (
