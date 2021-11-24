@@ -51,7 +51,8 @@ function MainPage(props) {
     });
     if (searchResult) {
       setState({ ...state, searchResult: searchResult });
-      await localStorage.setItem(
+      await localStorage.removeItem('youtube_scraper_key'); 
+      localStorage.setItem(
         "youtube_scraper_key",
         JSON.stringify({ ...state, searchResult: searchResult })
       );
