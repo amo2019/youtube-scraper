@@ -56,7 +56,7 @@ function VideoPreview(props) {
             />
           </div>
           <div onClick={() => handleClick()}>
-          <Link to={{ pathname: "/result", videoId: videoId.idChange }}>
+          <Link to={{ pathname: "/result", videoId: videoId }}>
           <div>
             <div >{video.snippet.title}</div>
 
